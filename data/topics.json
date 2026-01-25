@@ -1,12 +1,12 @@
 [
-  {"id": "travel_coffee", "category": "travel", "title": "Ordering coffee in a cafe", "prompt_template": "You are chatting in a cafe while traveling. Make a short Chinese dialogue about ordering coffee."},
-  {"id": "daily_grocery", "category": "daily", "title": "Buying groceries", "prompt_template": "Create a short Chinese conversation about buying vegetables at a market."},
-  {"id": "work_meeting", "category": "business", "title": "Scheduling a meeting", "prompt_template": "Create a short Chinese dialogue about scheduling a meeting time."},
-  {"id": "weather_plan", "category": "daily", "title": "Talking about the weather", "prompt_template": "Create a short Chinese dialogue about today's weather and plans."},
-  {"id": "restaurant_order", "category": "travel", "title": "Ordering food", "prompt_template": "Create a short Chinese conversation about ordering a simple meal."},
-  {"id": "hobby_music", "category": "daily", "title": "Talking about music", "prompt_template": "Create a short Chinese dialogue about favorite music and why."},
-  {"id": "shopping_clothes", "category": "daily", "title": "Shopping for clothes", "prompt_template": "Create a short Chinese conversation about trying on a jacket."},
-  {"id": "business_email", "category": "business", "title": "Following up by email", "prompt_template": "Create a short Chinese dialogue about following up after a meeting."},
-  {"id": "travel_directions", "category": "travel", "title": "Asking for directions", "prompt_template": "Create a short Chinese conversation asking for directions to the station."},
-  {"id": "daily_schedule", "category": "daily", "title": "Daily schedule", "prompt_template": "Create a short Chinese dialogue about today's schedule and priorities."}
+  {"id": "travel_coffee", "category": "travel", "title": "Ordering coffee in a cafe", "zh_title": "在咖啡馆点咖啡", "prompt_template": "You are chatting in a cafe while traveling. Make a short Chinese dialogue about ordering coffee."},
+  {"id": "daily_grocery", "category": "daily", "title": "Buying groceries", "zh_title": "去市场买菜", "prompt_template": "Create a short Chinese conversation about buying vegetables at a market."},
+  {"id": "work_meeting", "category": "business", "title": "Scheduling a meeting", "zh_title": "安排会议时间", "prompt_template": "Create a short Chinese dialogue about scheduling a meeting time."},
+  {"id": "weather_plan", "category": "daily", "title": "Talking about the weather", "zh_title": "聊今天的天气", "prompt_template": "Create a short Chinese dialogue about today's weather and plans."},
+  {"id": "restaurant_order", "category": "travel", "title": "Ordering food", "zh_title": "在餐厅点餐", "prompt_template": "Create a short Chinese conversation about ordering a simple meal."},
+  {"id": "hobby_music", "category": "daily", "title": "Talking about music", "zh_title": "聊喜欢的音乐", "prompt_template": "Create a short Chinese dialogue about favorite music and why."},
+  {"id": "shopping_clothes", "category": "daily", "title": "Shopping for clothes", "zh_title": "买衣服", "prompt_template": "Create a short Chinese conversation about trying on a jacket."},
+  {"id": "business_email", "category": "business", "title": "Following up by email", "zh_title": "邮件跟进", "prompt_template": "Create a short Chinese dialogue about following up after a meeting."},
+  {"id": "travel_directions", "category": "travel", "title": "Asking for directions", "zh_title": "问路", "prompt_template": "Create a short Chinese conversation asking for directions to the station."},
+  {"id": "daily_schedule", "category": "daily", "title": "Daily schedule", "zh_title": "今天的日程", "prompt_template": "Create a short Chinese dialogue about today's schedule and priorities."}
 ]

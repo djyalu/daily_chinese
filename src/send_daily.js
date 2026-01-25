@@ -24,23 +24,21 @@ function pickFallbackTopic(emailLogs, subscriber, topics) {
     .map((r) => r.topic_id);
 
   const fresh = topics.filter((t) => !recent.includes(t.id));
-  return (fresh.length ? fresh : topics)[0] || null;
+  const pool = fresh.length ? fresh : topics;
+  if (pool.length === 0) return null;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 async function sendForSubscriber(db, subscriber) {
   const topics = getCandidateTopics(db.topics, subscriber);
   if (topics.length === 0) throw new Error("No matching topics for subscriber");
 
-  const recentTopicIds = db.email_logs
-    .filter((log) => log.subscriber_id === subscriber.id)
-    .map((log) => log.topic_id);
   const fallbackTopic = pickFallbackTopic(db.email_logs, subscriber, topics);
+  if (!fallbackTopic) throw new Error("No topics available for subscriber");
 
   const { topic, script } = await generateConversation({
-    topics,
+    topic: fallbackTopic,
     level: subscriber.level,
-    recentTopicIds,
-    fallbackTopic,
   });
 
   const html = renderEmail({ subscriber, script });
