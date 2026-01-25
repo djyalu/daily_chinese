@@ -1,0 +1,35 @@
+name: Test workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: List repository files
+        run: |
+          echo "--- repo files ---"
+          ls -la
+
+      - name: Show Node and NPM versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Show package.json scripts
+        run: node -e "console.log(Object.keys(require('./package.json').scripts||{}))"
+
+      - name: Final message
+        run: echo "GitHub Actions test workflow completed"
