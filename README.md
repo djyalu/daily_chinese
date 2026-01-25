@@ -36,6 +36,11 @@ curl -X POST http://localhost:3000/subscribe \
   -d "{\"email\":\"you@example.com\",\"level\":\"beginner\",\"topics\":\"daily,travel\",\"timezone\":\"Asia/Seoul\"}"
 ```
 
+## OpenAI topic selection (optional)
+- Set `OPENAI_API_KEY` to let the model pick the topic and generate the script.
+- If the key is missing or the call fails, the app falls back to the local generator.
+- Use `OPENAI_MODEL` to override the model (default `gpt-4o-mini`).
+
 ## Dev notes
 - Scheduler uses `CRON_TZ` + `SCHEDULE_CRON` to send daily emails.
 - If SMTP isn't configured, email output is printed to the console.
