@@ -35,7 +35,7 @@ jobs:
 
       - name: Seed subscribers
         run: |
-          node -e "const fs=require('fs');const p='data/db.json';const raw=process.env.SUBSCRIBERS_JSON||'[]';const list=JSON.parse(raw);const db=fs.existsSync(p)?JSON.parse(fs.readFileSync(p,'utf8')):{subscribers:[],topics:[],email_logs:[]};db.subscribers=list.map((s,i)=>({id:i+1,email:s.email,level:s.level||'beginner',topics:s.topics||'daily,travel,business',timezone:s.timezone||'Asia/Seoul',active:s.active!==false,created_at:new Date().toISOString()}));fs.writeFileSync(p,JSON.stringify(db,null,2));console.log(`Seeded ${db.subscribers.length} subscribers.`);"
+          node -e "const fs=require('fs');const p='data/db.json';const raw=process.env.SUBSCRIBERS_JSON||'[]';const list=JSON.parse(raw);const db=fs.existsSync(p)?JSON.parse(fs.readFileSync(p,'utf8')):{subscribers:[],topics:[],email_logs:[]};db.subscribers=list.map((s,i)=>({id:i+1,email:s.email,level:s.level||'beginner',topics:s.topics||'daily,travel,business',timezone:s.timezone||'Asia/Seoul',active:s.active!==false,created_at:new Date().toISOString()}));fs.writeFileSync(p,JSON.stringify(db,null,2));console.log('Seeded '+db.subscribers.length+' subscribers.');"
         env:
           SUBSCRIBERS_JSON: ${{ secrets.SUBSCRIBERS_JSON }}
 
