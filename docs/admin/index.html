@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Chinese Admin</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-orbit"></div>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Daily Chinese</p>
+          <h1>Category + Level Admin</h1>
+          <p class="lede">
+            Manage categories and levels in your repository JSON. Changes are committed directly to the repo.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>Repo Connection</h2>
+          <div class="grid">
+            <label>
+              Owner
+              <input id="owner" placeholder="djyalu" />
+            </label>
+            <label>
+              Repo
+              <input id="repo" placeholder="daily_chinese" />
+            </label>
+            <label>
+              Branch
+              <input id="branch" placeholder="main" />
+            </label>
+            <label>
+              Token (fine-grained PAT)
+              <input id="token" type="password" placeholder="ghp_..." />
+            </label>
+            <label>
+              Categories path
+              <input id="categoriesPath" placeholder="data/categories.json" />
+            </label>
+            <label>
+              Levels path
+              <input id="levelsPath" placeholder="data/levels.json" />
+            </label>
+          </div>
+          <div class="actions">
+            <button id="saveConfig">Save config</button>
+            <button id="loadData" class="primary">Load data</button>
+          </div>
+          <p class="hint">
+            Token needs read/write access to repository contents. Data is stored in your browser only.
+          </p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Categories</h2>
+            <p>Used by topics to group daily, travel, business, and more. Keep in sync with data/topics.json.</p>
+          </div>
+          <div class="actions">
+            <button id="addCategory">Add category</button>
+            <button id="saveCategories" class="primary">Save categories</button>
+          </div>
+        </div>
+        <div class="rows" id="categoryRows" data-kind="category"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Levels</h2>
+            <p>Language levels used to control vocabulary complexity.</p>
+          </div>
+          <div class="actions">
+            <button id="addLevel">Add level</button>
+            <button id="saveLevels" class="primary">Save levels</button>
+          </div>
+        </div>
+        <div class="rows" id="levelRows" data-kind="level"></div>
+      </section>
+
+      <section class="panel status-panel">
+        <div>
+          <h2>Status</h2>
+          <p id="statusText">Connect to a repo to begin.</p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>

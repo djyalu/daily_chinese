@@ -1,0 +1,58 @@
+[
+  {
+    "text": "可以帮我推荐一下吗？",
+    "pinyin": "ke3 yi3 bang1 wo3 tui1 jian4 yi1 xia4 ma",
+    "meaning": "Could you recommend something?",
+    "category": "travel",
+    "level": "beginner"
+  },
+  {
+    "text": "这个怎么卖？",
+    "pinyin": "zhe4 ge zen3 me mai4",
+    "meaning": "How is this sold?/How much is this?",
+    "category": "daily",
+    "level": "beginner"
+  },
+  {
+    "text": "能不能少放一点辣？",
+    "pinyin": "neng2 bu4 neng2 shao3 fang4 yi1 dian3 la4",
+    "meaning": "Can you make it less spicy?",
+    "category": "travel",
+    "level": "intermediate"
+  },
+  {
+    "text": "我对花生过敏。",
+    "pinyin": "wo3 dui4 hua1 sheng1 guo4 min3",
+    "meaning": "I am allergic to peanuts.",
+    "category": "travel",
+    "level": "intermediate"
+  },
+  {
+    "text": "我们可以先确认一下安排。",
+    "pinyin": "wo3 men5 ke3 yi3 xian1 que4 ren4 yi1 xia4 an1 pai2",
+    "meaning": "We can confirm the arrangements first.",
+    "category": "business",
+    "level": "intermediate"
+  },
+  {
+    "text": "这个方案在预算内吗？",
+    "pinyin": "zhe4 ge fang1 an4 zai4 yu4 suan4 nei4 ma",
+    "meaning": "Is this plan within the budget?",
+    "category": "business",
+    "level": "advanced"
+  },
+  {
+    "text": "我们需要提高效率。",
+    "pinyin": "wo3 men5 xu1 yao4 ti2 gao1 xiao4 lv4",
+    "meaning": "We need to improve efficiency.",
+    "category": "business",
+    "level": "advanced"
+  },
+  {
+    "text": "行程有变，我们需要调整。",
+    "pinyin": "xing2 cheng2 you3 bian4, wo3 men5 xu1 yao4 tiao2 zheng3",
+    "meaning": "The itinerary changed; we need to adjust it.",
+    "category": "travel",
+    "level": "advanced"
+  }
+]

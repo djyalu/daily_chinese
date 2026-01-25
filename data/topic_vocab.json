@@ -1,0 +1,159 @@
+{
+  "byId": {
+    "travel_coffee": {
+      "beginner": [
+        { "term": "在咖啡馆点咖啡", "pinyin": "zai4 ka1 fei1 guan3 dian3 ka1 fei1", "meaning": "ordering coffee at a cafe" },
+        { "term": "请问", "pinyin": "qing3 wen4", "meaning": "excuse me / may I ask" },
+        { "term": "我要一杯", "pinyin": "wo3 yao4 yi1 bei1", "meaning": "I'd like a cup" },
+        { "term": "多少钱", "pinyin": "duo1 shao3 qian2", "meaning": "how much" },
+        { "term": "结账", "pinyin": "jie2 zhang4", "meaning": "pay the bill" }
+      ],
+      "intermediate": [
+        { "term": "拿铁", "pinyin": "na2 tie3", "meaning": "latte" },
+        { "term": "美式", "pinyin": "mei3 shi4", "meaning": "Americano" },
+        { "term": "去掉奶", "pinyin": "qu4 diao4 nai3", "meaning": "no milk" },
+        { "term": "加糖", "pinyin": "jia1 tang2", "meaning": "add sugar" },
+        { "term": "结账方式", "pinyin": "jie2 zhang4 fang1 shi4", "meaning": "payment method" }
+      ],
+      "advanced": [
+        { "term": "单品推荐", "pinyin": "dan1 pin3 tui1 jian4", "meaning": "single-origin recommendation" },
+        { "term": "风味描述", "pinyin": "feng1 wei4 miao2 shu4", "meaning": "flavor description" },
+        { "term": "定制口味", "pinyin": "ding4 zhi4 kou3 wei4", "meaning": "customized flavor" },
+        { "term": "挂账", "pinyin": "gua4 zhang4", "meaning": "charge to account" },
+        { "term": "优惠活动", "pinyin": "you1 hui4 huo2 dong4", "meaning": "promotional offer" }
+      ]
+    },
+    "daily_grocery": {
+      "beginner": [
+        { "term": "买菜", "pinyin": "mai3 cai4", "meaning": "buy groceries" },
+        { "term": "多少钱", "pinyin": "duo1 shao3 qian2", "meaning": "how much" },
+        { "term": "计斤", "pinyin": "ji4 jin1", "meaning": "sold by jin (weight unit)" },
+        { "term": "收银台", "pinyin": "shou1 yin2 tai2", "meaning": "cashier" },
+        { "term": "找零", "pinyin": "zhao3 ling2", "meaning": "give change" }
+      ],
+      "intermediate": [
+        { "term": "称重", "pinyin": "cheng1 zhong4", "meaning": "weighing" },
+        { "term": "本地蔬菜", "pinyin": "ben3 di4 shu1 cai4", "meaning": "local vegetables" },
+        { "term": "促销", "pinyin": "cu4 xiao1", "meaning": "promotion" },
+        { "term": "发票", "pinyin": "fa1 piao4", "meaning": "invoice/receipt" },
+        { "term": "打折", "pinyin": "da3 zhe2", "meaning": "discount" }
+      ],
+      "advanced": [
+        { "term": "季节性产品", "pinyin": "ji4 jie2 xing4 chan3 pin3", "meaning": "seasonal products" },
+        { "term": "进货渠道", "pinyin": "jin4 huo4 qu3 dao4", "meaning": "supply channels" },
+        { "term": "质量检测", "pinyin": "zhi4 liang4 jian3 ce4", "meaning": "quality check" },
+        { "term": "供应商", "pinyin": "gong1 ying4 shang1", "meaning": "supplier" },
+        { "term": "库存管理", "pinyin": "ku4 cun2 guan3 li3", "meaning": "inventory management" }
+      ]
+    },
+    "hobby_music": {
+      "beginner": [
+        { "term": "音乐", "pinyin": "yin1 yue4", "meaning": "music" },
+        { "term": "喜欢", "pinyin": "xi3 huan1", "meaning": "like" },
+        { "term": "歌手", "pinyin": "ge1 shou3", "meaning": "singer" },
+        { "term": "听歌", "pinyin": "ting1 ge1", "meaning": "listen to songs" },
+        { "term": "推荐", "pinyin": "tui1 jian4", "meaning": "recommend" }
+      ],
+      "intermediate": [
+        { "term": "专辑", "pinyin": "zhuan1 ji2", "meaning": "album" },
+        { "term": "曲风", "pinyin": "qu3 feng1", "meaning": "genre" },
+        { "term": "演唱会", "pinyin": "yan3 chang4 hui4", "meaning": "concert" },
+        { "term": "听众", "pinyin": "ting1 zhong4", "meaning": "audience" },
+        { "term": "推荐理由", "pinyin": "tui1 jian4 li3 you2", "meaning": "reason for recommendation" }
+      ],
+      "advanced": [
+        { "term": "音乐制作", "pinyin": "yin1 yue4 zhi4 zuo4", "meaning": "music production" },
+        { "term": "曲式分析", "pinyin": "qu3 shi4 fen1 xi1", "meaning": "form analysis" },
+        { "term": "和声", "pinyin": "he2 sheng1", "meaning": "harmony" },
+        { "term": "编曲", "pinyin": "bian1 qu3", "meaning": "arrangement" },
+        { "term": "音乐产业", "pinyin": "yin1 yue4 chan3 ye4", "meaning": "music industry" }
+      ]
+    },
+    "daily_schedule": {
+      "beginner": [
+        { "term": "今天", "pinyin": "jin1 tian1", "meaning": "today" },
+        { "term": "安排", "pinyin": "an1 pai2", "meaning": "arrangement" },
+        { "term": "几点", "pinyin": "ji3 dian3", "meaning": "what time" },
+        { "term": "任务", "pinyin": "ren4 wu4", "meaning": "task" },
+        { "term": "休息", "pinyin": "xiu1 xi2", "meaning": "rest" }
+      ],
+      "intermediate": [
+        { "term": "优先级", "pinyin": "you1 xian1 ji2", "meaning": "priority" },
+        { "term": "会议", "pinyin": "hui4 yi4", "meaning": "meeting" },
+        { "term": "截止", "pinyin": "jie2 zhi3", "meaning": "deadline" },
+        { "term": "提醒", "pinyin": "ti2 xing3", "meaning": "reminder" },
+        { "term": "调整", "pinyin": "tiao2 zheng3", "meaning": "adjust" }
+      ],
+      "advanced": [
+        { "term": "资源分配", "pinyin": "zi1 yuan2 fen1 pei4", "meaning": "resource allocation" },
+        { "term": "里程碑", "pinyin": "li3 cheng2 bei1", "meaning": "milestone" },
+        { "term": "时间块", "pinyin": "shi2 jian1 kuai4", "meaning": "time blocking" },
+        { "term": "风险管理", "pinyin": "feng1 xian3 guan3 li3", "meaning": "risk management" },
+        { "term": "复盘", "pinyin": "fu4 pan2", "meaning": "retrospective" }
+      ]
+    },
+    "restaurant_order": {
+      "beginner": [
+        { "term": "菜单", "pinyin": "cai4 dan1", "meaning": "menu" },
+        { "term": "点餐", "pinyin": "dian3 can1", "meaning": "order food" },
+        { "term": "服务员", "pinyin": "fu2 wu4 yuan2", "meaning": "waiter/waitress" },
+        { "term": "要不要辣", "pinyin": "yao4 bu4 yao4 la4", "meaning": "do you want it spicy" },
+        { "term": "结账", "pinyin": "jie2 zhang4", "meaning": "pay the bill" }
+      ],
+      "intermediate": [
+        { "term": "招牌菜", "pinyin": "zhao1 pai2 cai4", "meaning": "signature dish" },
+        { "term": "口味", "pinyin": "kou3 wei4", "meaning": "flavor" },
+        { "term": "分量", "pinyin": "fen1 liang4", "meaning": "portion size" },
+        { "term": "推荐", "pinyin": "tui1 jian4", "meaning": "recommend" },
+        { "term": "取消订单", "pinyin": "qu3 xiao1 ding4 dan1", "meaning": "cancel order" }
+      ],
+      "advanced": [
+        { "term": "上菜顺序", "pinyin": "shang4 cai4 shun4 xu4", "meaning": "serving order" },
+        { "term": "口味调整", "pinyin": "kou3 wei4 tiao2 zheng3", "meaning": "adjust flavor" },
+        { "term": "预订要求", "pinyin": "yu4 ding4 yao1 qiu2", "meaning": "reservation requests" },
+        { "term": "食材来源", "pinyin": "shi2 cai2 lai2 yuan2", "meaning": "ingredient source" },
+        { "term": "顾客反馈", "pinyin": "gu4 ke4 fan3 kui4", "meaning": "customer feedback" }
+      ]
+    },
+    "travel_directions": {
+      "beginner": [
+        { "term": "问路", "pinyin": "wen4 lu4", "meaning": "ask for directions" },
+        { "term": "左转", "pinyin": "zuo3 zhuan3", "meaning": "turn left" },
+        { "term": "右转", "pinyin": "you4 zhuan3", "meaning": "turn right" },
+        { "term": "直走", "pinyin": "zhi2 zou3", "meaning": "go straight" },
+        { "term": "车站", "pinyin": "che1 zhan4", "meaning": "station" }
+      ],
+      "intermediate": [
+        { "term": "公交换乘", "pinyin": "gong1 jiao1 huan4 cheng2", "meaning": "transfer buses" },
+        { "term": "地铁出口", "pinyin": "di4 tie3 chu1 kou3", "meaning": "metro exit" },
+        { "term": "步行指引", "pinyin": "bu4 xing2 zhi3 yin3", "meaning": "walking directions" },
+        { "term": "距离", "pinyin": "ju4 li2", "meaning": "distance" },
+        { "term": "估计时间", "pinyin": "gu1 ji4 shi2 jian1", "meaning": "estimated time" }
+      ],
+      "advanced": [
+        { "term": "交通堵塞", "pinyin": "jiao1 tong1 du3 se4", "meaning": "traffic jam" },
+        { "term": "路线规划", "pinyin": "lu4 xian4 gui1 hua4", "meaning": "route planning" },
+        { "term": "步行可达", "pinyin": "bu4 xing2 ke3 da2", "meaning": "walkable" },
+        { "term": "最佳换乘点", "pinyin": "zui4 jia1 huan4 cheng2 dian3", "meaning": "best transfer point" },
+        { "term": "交通选项", "pinyin": "jiao1 tong1 xuan3 xiang4", "meaning": "transport options" }
+      ]
+    }
+  },
+  "byCategory": {
+    "travel": {
+      "beginner": ["机票", "机场", "行李", "登机", "护照"],
+      "intermediate": ["转机", "行程", "签证", "托运", "航班"],
+      "advanced": ["接驳", "延误赔偿", "航线规划", "行程优化", "报关"]
+    },
+    "daily": {
+      "beginner": ["早上", "吃饭", "上班", "下班", "朋友"],
+      "intermediate": ["日程", "安排", "习惯", "偶尔", "经常"],
+      "advanced": ["效率", "优先级", "协作", "调整", "反馈"]
+    }
+  },
+  "default": {
+    "beginner": ["你好", "谢谢", "请", "可以", "多少钱"],
+    "intermediate": ["安排", "方便", "建议", "如果", "因为"],
+    "advanced": ["优先", "调整", "讨论", "确认", "期待"]
+  }
+}

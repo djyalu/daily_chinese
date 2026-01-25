@@ -1,0 +1,114 @@
+[
+  {
+    "term": "请",
+    "pinyin": "qing3",
+    "meaning": "please",
+    "category": "daily",
+    "level": "beginner"
+  },
+  {
+    "term": "多少钱",
+    "pinyin": "duo1 shao3 qian2",
+    "meaning": "how much",
+    "category": "daily",
+    "level": "beginner"
+  },
+  {
+    "term": "谢谢",
+    "pinyin": "xie4 xie",
+    "meaning": "thanks",
+    "category": "daily",
+    "level": "beginner"
+  },
+  {
+    "term": "菜单",
+    "pinyin": "cai4 dan1",
+    "meaning": "menu",
+    "category": "travel",
+    "level": "beginner"
+  },
+  {
+    "term": "点餐",
+    "pinyin": "dian3 can1",
+    "meaning": "to order food",
+    "category": "travel",
+    "level": "beginner"
+  },
+  {
+    "term": "辣",
+    "pinyin": "la4",
+    "meaning": "spicy",
+    "category": "travel",
+    "level": "beginner"
+  },
+  {
+    "term": "推荐",
+    "pinyin": "tui1 jian4",
+    "meaning": "to recommend",
+    "category": "travel",
+    "level": "intermediate"
+  },
+  {
+    "term": "口味",
+    "pinyin": "kou3 wei4",
+    "meaning": "flavor",
+    "category": "travel",
+    "level": "intermediate"
+  },
+  {
+    "term": "过敏",
+    "pinyin": "guo4 min3",
+    "meaning": "allergy",
+    "category": "travel",
+    "level": "intermediate"
+  },
+  {
+    "term": "折扣",
+    "pinyin": "zhe2 kou4",
+    "meaning": "discount",
+    "category": "business",
+    "level": "intermediate"
+  },
+  {
+    "term": "安排",
+    "pinyin": "an1 pai2",
+    "meaning": "arrangement",
+    "category": "business",
+    "level": "intermediate"
+  },
+  {
+    "term": "确认",
+    "pinyin": "que4 ren4",
+    "meaning": "confirm",
+    "category": "business",
+    "level": "intermediate"
+  },
+  {
+    "term": "预算",
+    "pinyin": "yu4 suan4",
+    "meaning": "budget",
+    "category": "business",
+    "level": "advanced"
+  },
+  {
+    "term": "效率",
+    "pinyin": "xiao4 lv4",
+    "meaning": "efficiency",
+    "category": "business",
+    "level": "advanced"
+  },
+  {
+    "term": "行程",
+    "pinyin": "xing2 cheng2",
+    "meaning": "itinerary",
+    "category": "travel",
+    "level": "advanced"
+  },
+  {
+    "term": "临时",
+    "pinyin": "lin2 shi2",
+    "meaning": "temporary",
+    "category": "daily",
+    "level": "advanced"
+  }
+]
