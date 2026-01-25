@@ -1,0 +1,23 @@
+[
+  {
+    "id": "beginner",
+    "label": "Beginner",
+    "description": "Basic words, short sentences, and simple grammar.",
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": "intermediate",
+    "label": "Intermediate",
+    "description": "Longer sentences, wider vocabulary, and basic nuance.",
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": "advanced",
+    "label": "Advanced",
+    "description": "More natural phrasing, idioms, and complex topics.",
+    "order": 3,
+    "active": true
+  }
+]

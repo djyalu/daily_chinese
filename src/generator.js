@@ -17,7 +17,9 @@ const COUNTS = {
 function loadJson(filename) {
   if (cache.has(filename)) return cache.get(filename);
   const filePath = path.join(dataDir, filename);
-  const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const raw = fs.readFileSync(filePath, "utf8");
+  const cleaned = raw.replace(/^\uFEFF/, "");
+  const parsed = JSON.parse(cleaned);
   cache.set(filename, parsed);
   return parsed;
 }
@@ -63,8 +65,51 @@ function getCounts(level) {
 function buildLocalScript({ topic, level }) {
   const vocabList = loadJson("vocab.json");
   const phraseList = loadJson("phrases.json");
+  const topicVocab = loadJson("topic_vocab.json");
   const templates = loadJson("script_templates.json");
-  const vocabPool = pickByCategoryAndLevel(vocabList, topic.category, level);
+  // build index from vocabList for enrichment (term -> {term,pinyin,meaning,...})
+  const vocabIndex = new Map((vocabList || []).map((v) => [v.term, v]));
+  // Prefer vocab from data/topic_vocab.json: byId -> byCategory -> default[level]
+  let vocabPool = [];
+  try {
+    const byId = topicVocab.byId || {};
+    const byCategory = topicVocab.byCategory || {};
+    const defaults = topicVocab.default || {};
+
+    const normalize = (t) => {
+      if (!t) return null;
+      if (typeof t === "string") {
+        const found = vocabIndex.get(t);
+        return found ? found : { term: t, pinyin: "", meaning: "" };
+      }
+      if (typeof t === "object") {
+        // already structured {term,pinyin,meaning} or similar
+        return {
+          term: t.term || t.text || "",
+          pinyin: t.pinyin || "",
+          meaning: t.meaning || "",
+          category: t.category,
+          level: t.level,
+        };
+      }
+      return null;
+    };
+
+    if (byId[topic.id] && Array.isArray(byId[topic.id][level])) {
+      vocabPool = byId[topic.id][level].map(normalize).filter(Boolean);
+    } else if (byCategory[topic.category] && Array.isArray(byCategory[topic.category][level])) {
+      vocabPool = byCategory[topic.category][level].map(normalize).filter(Boolean);
+    } else if (Array.isArray(defaults[level])) {
+      vocabPool = defaults[level].map(normalize).filter(Boolean);
+    }
+  } catch (e) {
+    vocabPool = [];
+  }
+
+  // Fallback to legacy structured vocab.json if topic_vocab didn't provide usable items
+  if (!vocabPool || vocabPool.length === 0) {
+    vocabPool = pickByCategoryAndLevel(vocabList, topic.category, level);
+  }
   const phrasePool = pickByCategoryAndLevel(phraseList, topic.category, level);
   const counts = getCounts(level);
 

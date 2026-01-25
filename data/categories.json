@@ -1,0 +1,20 @@
+[
+  {
+    "id": "daily",
+    "name": "Daily Life",
+    "description": "Everyday routines, errands, and casual conversations.",
+    "active": true
+  },
+  {
+    "id": "travel",
+    "name": "Travel",
+    "description": "Transportation, directions, lodging, and sightseeing.",
+    "active": true
+  },
+  {
+    "id": "business",
+    "name": "Business",
+    "description": "Meetings, email follow-ups, and workplace topics.",
+    "active": true
+  }
+]
