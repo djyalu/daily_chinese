@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping
-        run: echo "schedule ping: $(date -u)"
+        run: |
+          echo "schedule ping: $(date -u)"
