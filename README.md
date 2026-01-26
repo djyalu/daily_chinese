@@ -38,6 +38,7 @@ curl -X POST http://localhost:3000/subscribe \
 
 ## Dev notes
 - Scheduler uses `CRON_TZ` + `SCHEDULE_CRON` to send daily emails.
+- GitHub Actions schedule uses UTC. For KST 07:30, set cron to `30 22 * * *`.
 - If SMTP isn't configured, email output is printed to the console.
 - Use `npm run send:daily` to run the daily send once.
 - Script generation uses local templates plus optional Gemini (Google AI Studio) if `GEMINI_API_KEY` is set.

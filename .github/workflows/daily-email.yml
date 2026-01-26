@@ -2,8 +2,8 @@ name: Daily Chinese Email
 
 on:
   schedule:
-    # TEMP (debug): run every 5 minutes to verify schedule triggers
-    - cron: "*/5 * * * *"
+    # GitHub Actions schedule uses UTC. 07:30 KST = 22:30 UTC (previous day).
+    - cron: "30 22 * * *"
   workflow_dispatch:
 
 jobs:
@@ -38,15 +38,6 @@ jobs:
           node -e "const fs=require('fs');const p='data/db.json';const raw=process.env.SUBSCRIBERS_JSON||'[]';const list=JSON.parse(raw);const db=fs.existsSync(p)?JSON.parse(fs.readFileSync(p,'utf8')):{subscribers:[],topics:[],email_logs:[]};db.subscribers=list.map((s,i)=>({id:i+1,email:s.email,level:s.level||'beginner',topics:s.topics||'daily,travel,business',timezone:s.timezone||'Asia/Seoul',active:s.active!==false,created_at:new Date().toISOString()}));fs.writeFileSync(p,JSON.stringify(db,null,2));console.log('Seeded '+db.subscribers.length+' subscribers.');"
         env:
           SUBSCRIBERS_JSON: ${{ vars.SUBSCRIBERS_JSON }}
-
-      - name: Debug secret length
-        run: node -e "const raw=process.env.SUBSCRIBERS_JSON||''; console.log('SUBSCRIBERS_JSON length:', raw.length);"
-        env:
-          SUBSCRIBERS_JSON: ${{ vars.SUBSCRIBERS_JSON }}
-
-      - name: Verify subscribers
-        run: |
-          node -e "const fs=require('fs');const p='data/db.json';const db=fs.existsSync(p)?JSON.parse(fs.readFileSync(p,'utf8')):{subscribers:[]};console.log('Subscriber count:', db.subscribers.length);console.log('Subscriber emails:', db.subscribers.map(s=>s.email).join(', ') || '(none)');"
 
       - name: Send daily emails
         run: npm run send:daily
