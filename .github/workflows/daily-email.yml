@@ -2,8 +2,8 @@ name: Daily Chinese Email
 
 on:
   schedule:
-    # 07:30 KST = 22:30 UTC (previous day)
-    - cron: "30 22 * * *"
+    # TEMP (debug): run every 5 minutes to verify schedule triggers
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
