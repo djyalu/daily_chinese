@@ -183,74 +183,139 @@ function isValidScript(script, counts) {
   );
 }
 
-function buildGeminiPrompt({ topic, level, local, counts }) {
+function buildGeminiPrompt({ topic, level, local, counts, language }) {
+  const langMap = {
+    "zh-CN": "Mandarin Chinese",
+    "ja-JP": "Japanese",
+    "es-ES": "Spanish",
+  };
+  const targetLang = langMap[language] || "Mandarin Chinese";
+
+  const pronunciationLabel = language === "ja-JP" ? "Reading/Furigana" : (language === "zh-CN" ? "Pinyin" : "Pronunciation (if applicable)");
+
   const topicPrompt = topic.prompt_template
     ? `Topic prompt: ${topic.prompt_template}`
     : "Topic prompt: (none)";
 
-  return [
-    "You are a Mandarin Chinese lesson generator.",
-    "Return ONLY valid JSON with keys: title, intro, level, vocab, expressions, dialog, questions, tips.",
-    "Title should be Chinese only.",
-    "Intro should be 1-2 sentences.",
-    `Dialog must be ${counts.minDialog}-8 lines with A:/B: prefixes.`,
-    `Vocab must be ${counts.vocab}-${counts.vocab + 2} items.`,
-    `Expressions must be ${counts.expressions}-${counts.expressions + 1} items.`,
-    `Questions must be ${counts.questions} items.`,
-    `Tips must be ${counts.tips} items.`,
-    'Each vocab item must be { "term": "...", "pinyin": "...", "meaning": "..." }.',
-    'Each expression item must be { "text": "...", "pinyin": "...", "meaning": "..." }.',
-    "Use natural, topic-relevant vocabulary. Avoid irrelevant pricing/shopping phrases unless the topic demands it.",
+  const promptLines = [
+    `You are a expert ${targetLang} language teacher and lesson generator.`,
+    "Return ONLY valid JSON with the exact following structure:",
+    "{",
+    '  "title": "Topic in target language",',
+    '  "intro": "1-2 sentence introduction in English",',
+    '  "level": "beginner|intermediate|advanced",',
+    '  "vocab": [{ "term": "word", "pinyin": "pronunciation", "meaning": "translation" }],',
+    '  "expressions": [{ "text": "phrase", "pinyin": "pronunciation", "meaning": "translation" }],',
+    '  "dialog": ["Speaker A: ...", "Speaker B: ..."],',
+    '  "questions": ["Question 1", "Question 2"],',
+    '  "tips": ["Grammar/Culture Tip 1", "Tip 2"]',
+    "}",
+    `The 'title' must be in ${targetLang} only.`,
+    `The 'dialog' must be exactly ${counts.minDialog} lines with A:/B: prefixes, written in ${targetLang}.`,
+    `Vocab must be exactly ${counts.vocab} items.`,
+    `Expressions must be exactly ${counts.expressions} items.`,
+    `Questions must be exactly ${counts.questions} items (in English, about the content).`,
+    `Tips must be exactly ${counts.tips} items (in English, about ${targetLang}).`,
+    `In the 'pinyin' field, provide the ${pronunciationLabel}.`,
+  ];
+
+  if (language === "es-ES") {
+    promptLines.push("For Spanish, 'pinyin' should be a phonetic transcription or pronunciation guide if the word's pronunciation is not obvious from its spelling.");
+  }
+
+  promptLines.push(
     `Topic (EN): ${topic.title}`,
-    `Topic (ZH): ${topic.zh_title || topic.title}`,
+    `Topic (Target Content): ${topic.title} in ${targetLang}`,
     `Category: ${topic.category}`,
     `Level: ${level}`,
     topicPrompt,
-    `Preferred vocab (use if relevant): ${local.vocab.map((v) => v.term).join(", ")}`,
-    `Preferred expressions (use if relevant): ${local.expressions.map((p) => p.text).join(", ")}`,
-  ].join("\n");
-}
-
-async function generateWithGemini({ topic, level, local, counts }) {
-  const { apiKey, model } = getGeminiConfig();
-  if (!apiKey) return null;
-
-  const prompt = buildGeminiPrompt({ topic, level, local, counts });
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey,
-      },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.6,
-          responseMimeType: "application/json",
-        },
-      }),
-    }
   );
 
-  if (!response.ok) return null;
-  const data = await response.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) return null;
+  if (language === "zh-CN") {
+    promptLines.push(`Preferred vocab: ${local.vocab.map((v) => v.term).join(", ")}`);
+    promptLines.push(`Preferred expressions: ${local.expressions.map((p) => p.text).join(", ")}`);
+  }
 
+  return promptLines.join("\n");
+}
+
+async function generateWithGemini({ topic, level, local, counts, language }, retryCount = 0) {
+  const { apiKey, model } = getGeminiConfig();
+  if (!apiKey) {
+    console.error("Missing GEMINI_API_KEY");
+    return null;
+  }
+
+  const prompt = buildGeminiPrompt({ topic, level, local, counts, language });
   try {
-    const parsed = JSON.parse(text);
-    return parsed;
-  } catch {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+          generationConfig: {
+            temperature: 0.7,
+            responseMimeType: "application/json",
+          },
+        }),
+      }
+    );
+
+    if (response.status === 429 && retryCount < 3) {
+      const waitTime = (retryCount + 1) * 5000;
+      console.warn(`Rate limit hit (429). Retrying in ${waitTime / 1000}s... (Attempt ${retryCount + 1})`);
+      await new Promise((resolve) => setTimeout(resolve, waitTime));
+      return generateWithGemini({ topic, level, local, counts, language }, retryCount + 1);
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Gemini API error: ${response.status} - ${errorText}`);
+      return null;
+    }
+
+    const data = await response.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) {
+      console.warn("Gemini API response did not contain text content.");
+      return null;
+    }
+
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("Error during Gemini generation or JSON parsing:", err);
     return null;
   }
 }
 
-export async function generateConversation({ topic, level }) {
+export async function generateConversation({ topic, level, language = "zh-CN" }) {
   const counts = getCounts(level);
-  const local = buildLocalScript({ topic, level });
-  const llmScript = await generateWithGemini({ topic, level, local, counts });
-  const script = isValidScript(llmScript, counts) ? llmScript : local;
-  return { topic, script };
+
+  // Local fallback works primarily for Chinese for now.
+  // For other languages, we rely on Gemini first, or a minimal empty structure if fails.
+  const local = language === "zh-CN" ? buildLocalScript({ topic, level }) : {
+    title: topic.title,
+    intro: `A lesson about ${topic.title}.`,
+    level,
+    vocab: [],
+    expressions: [],
+    dialog: [],
+    questions: [],
+    tips: []
+  };
+
+  let llmScript = await generateWithGemini({ topic, level, local, counts, language });
+
+  // Basic validation
+  if (llmScript && isValidScript(llmScript, counts)) {
+    return { topic, script: llmScript };
+  }
+
+  console.warn(`LLM failed for ${language}, falling back to ${language === "zh-CN" ? "local" : "minimal"} script`);
+  return { topic, script: (language === "zh-CN" ? local : llmScript || local) };
 }

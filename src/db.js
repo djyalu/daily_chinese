@@ -18,9 +18,9 @@ export function saveDb(data) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
 }
 
-export function withDb(mutator) {
+export async function withDb(mutator) {
   const data = loadDb();
-  const result = mutator(data);
+  const result = await mutator(data);
   saveDb(data);
   return result;
 }

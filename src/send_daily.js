@@ -29,7 +29,7 @@ function pickFallbackTopic(emailLogs, subscriber, topics) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-async function sendForSubscriber(db, subscriber) {
+async function sendForSubscriber(db, subscriber, targetLanguage) {
   const topics = getCandidateTopics(db.topics, subscriber);
   if (topics.length === 0) throw new Error("No matching topics for subscriber");
 
@@ -39,30 +39,51 @@ async function sendForSubscriber(db, subscriber) {
   const { topic, script } = await generateConversation({
     topic: fallbackTopic,
     level: subscriber.level,
+    language: targetLanguage,
   });
 
-  const html = renderEmail({ subscriber, script });
+  const logId = db.email_logs.length + 1;
+  const html = renderEmail({ subscriber, script, logId });
 
-  const subject = `Daily Chinese: ${script.title}`;
+  const langNames = {
+    "zh-CN": "Chinese",
+    "ja-JP": "Japanese",
+    "es-ES": "Spanish",
+  };
+  const langName = langNames[targetLanguage] || "Chinese";
+  const subject = `Daily ${langName}: ${script.title}`;
   await sendMail({ to: subscriber.email, subject, html });
 
   db.email_logs.push({
-    id: db.email_logs.length + 1,
+    id: logId,
     subscriber_id: subscriber.id,
     topic_id: topic.id,
+    script, // Store the script content for back-referencing/copying
     sent_at: new Date().toISOString(),
     status: "sent",
   });
 }
 
 async function main() {
+  const targetLanguage = process.argv[2] || "zh-CN";
+  console.log(`Starting daily send for language: ${targetLanguage}`);
+
   await withDb(async (db) => {
-    const subscribers = db.subscribers.filter((s) => s.active === true);
+    const subscribers = db.subscribers.filter(
+      (s) => s.active === true && (s.language || "zh-CN") === targetLanguage
+    );
+
+    if (subscribers.length === 0) {
+      console.log(`No active subscribers for ${targetLanguage}`);
+      return;
+    }
 
     for (const subscriber of subscribers) {
       try {
-        await sendForSubscriber(db, subscriber);
+        await sendForSubscriber(db, subscriber, targetLanguage);
         console.log(`Sent to ${subscriber.email}`);
+        // Add a small delay to avoid hitting rate limits
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         db.email_logs.push({
