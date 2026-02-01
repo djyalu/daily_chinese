@@ -20,42 +20,35 @@ db.subscribers = [];
 
 list.forEach((s, i) => {
     // Support both 'language' and 'lang' keys
-    const lang = s.language || s.lang;
+    const lang = s.language || s.lang || s.languages;
 
-    if (lang) {
-        // If language is explicitly provided (could be "ja-JP" or "ja-JP,es-ES")
-        const langs = lang.split(',').map(l => l.trim().toLowerCase());
-        langs.forEach((l, idx) => {
-            // Normalizing common language codes
-            let normalized = l;
-            if (l === 'japanese' || l === 'ja') normalized = 'ja-JP';
-            if (l === 'spanish' || l === 'es') normalized = 'es-ES';
-            if (l === 'chinese' || l === 'zh') normalized = 'zh-CN';
+    // Debug: Print the first subscriber object to see what's actually inside
+    if (i === 0) {
+        console.log('Debug - First subscriber object:', JSON.stringify(s));
+    }
 
-            db.subscribers.push({
-                id: db.subscribers.length + 1,
-                email: s.email,
-                level: s.level || 'beginner',
-                language: normalized,
-                topics: s.topics || 'daily,travel,business',
-                timezone: s.timezone || 'Asia/Seoul',
-                active: s.active !== false,
-                created_at: new Date().toISOString()
-            });
-        });
-    } else {
-        // If no language provided, default to zh-CN but log it
+    const targetLangs = lang
+        ? lang.split(',').map(l => l.trim().toLowerCase())
+        : ['zh-cn', 'ja-jp', 'es-es']; // Default to all if not specified
+
+    targetLangs.forEach((l) => {
+        // Normalizing common language codes
+        let normalized = l;
+        if (l === 'japanese' || l === 'ja' || l === 'ja-jp') normalized = 'ja-JP';
+        else if (l === 'spanish' || l === 'es' || l === 'es-es') normalized = 'es-ES';
+        else if (l === 'chinese' || l === 'zh' || l === 'zh-cn') normalized = 'zh-CN';
+
         db.subscribers.push({
             id: db.subscribers.length + 1,
             email: s.email,
             level: s.level || 'beginner',
-            language: 'zh-CN',
+            language: normalized,
             topics: s.topics || 'daily,travel,business',
             timezone: s.timezone || 'Asia/Seoul',
             active: s.active !== false,
             created_at: new Date().toISOString()
         });
-    }
+    });
 });
 
 fs.writeFileSync(p, JSON.stringify(db, null, 2));
