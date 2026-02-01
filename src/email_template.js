@@ -46,6 +46,28 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
 
   return `
   <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333; max-width: 600px; margin: 0 auto;">
+    <div style="margin-bottom: 30px; padding: 20px; background-color: #f0f7ff; border: 2px solid #3498db; border-radius: 12px;">
+      <h4 style="margin-top: 0; color: #2980b9; font-size: 16px;">📋 원클릭 전체 선택 (학습내용 복사)</h4>
+      <p style="font-size: 13px; color: #555; margin-bottom: 12px;">아래 박스를 <b>클릭</b>하면 전체 내용이 선택됩니다. 선택 후 <b>Ctrl+C</b>를 눌러 복사하세요.</p>
+      <div style="
+        -webkit-user-select: all; 
+        -moz-user-select: all; 
+        -ms-user-select: all; 
+        user-select: all; 
+        white-space: pre-wrap; 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 13px; 
+        color: #333; 
+        background: white; 
+        padding: 15px; 
+        border: 1px solid #d1e2f3;
+        border-radius: 6px;
+        max-height: 180px;
+        overflow-y: auto;
+        cursor: pointer;
+      " title="클릭하여 전체 선택">${copyText}</div>
+    </div>
+
     <h2 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">${title}</h2>
     <p style="font-style: italic; color: #555;">${intro}</p>
 
@@ -63,11 +85,6 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
     ${tipsHtml ? `<h3 style="background: #f8f9fa; padding: 5px 10px; border-left: 4px solid #f1c40f;">Tips</h3><ul>${tipsHtml}</ul>` : ""}
 
     <div style="margin-top: 30px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
-      <div style="margin-bottom: 25px;">
-        <a href="${copyUrl}" style="background-color: #3498db; color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block;">📋 전체 학습내용 복사하기</a>
-        <p style="font-size: 11px; color: #999; margin-top: 8px;">(클릭 시 브라우저에서 자동으로 클립보드에 복사됩니다)</p>
-      </div>
-
       <p style="font-size: 14px; color: #666; margin-bottom: 15px;">🤖 Continue studying with AI:</p>
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <a href="https://www.perplexity.ai/search?q=${encodeURIComponent(`Please analyze this lesson and give me more practice sentences:\n\n${copyText}`)}" 
@@ -79,25 +96,6 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
         <a href="https://gemini.google.com/app?q=${encodeURIComponent(`Explain the grammar points in this lesson in detail:\n\n${copyText}`)}" 
            style="background-color: #4285f4; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-size: 13px; font-weight: bold; margin: 5px;">Gemini</a>
       </div>
-    </div>
-
-    <div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border: 1px solid #e1e4e8; border-radius: 8px;">
-      <h4 style="margin-top: 0; color: #2c3e50; font-size: 14px; border-bottom: 1px solid #e1e4e8; padding-bottom: 8px;">📑 학습 텍스트 (수동 복사용)</h4>
-      <div style="
-        -webkit-user-select: all; 
-        -moz-user-select: all; 
-        -ms-user-select: all; 
-        user-select: all; 
-        white-space: pre-wrap; 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 13px; 
-        color: #444; 
-        background: white; 
-        padding: 15px; 
-        border-radius: 4px;
-        max-height: 200px;
-        overflow-y: auto;
-      ">${copyText}</div>
     </div>
 
     <hr style="margin-top: 40px; border: 0; border-top: 1px solid #eee;" />
