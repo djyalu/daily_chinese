@@ -63,6 +63,11 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
     ${tipsHtml ? `<h3 style="background: #f8f9fa; padding: 5px 10px; border-left: 4px solid #f1c40f;">Tips</h3><ul>${tipsHtml}</ul>` : ""}
 
     <div style="margin-top: 30px; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+      <div style="margin-bottom: 25px;">
+        <a href="${copyUrl}" style="background-color: #3498db; color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block;">📋 전체 학습내용 복사하기</a>
+        <p style="font-size: 11px; color: #999; margin-top: 8px;">(클릭 시 브라우저에서 자동으로 클립보드에 복사됩니다)</p>
+      </div>
+
       <p style="font-size: 14px; color: #666; margin-bottom: 15px;">🤖 Continue studying with AI:</p>
       <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <a href="https://www.perplexity.ai/search?q=${encodeURIComponent(`Please analyze this lesson and give me more practice sentences:\n\n${copyText}`)}" 
@@ -76,11 +81,8 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
       </div>
     </div>
 
-    <div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border: 2px dashed #3498db; border-radius: 8px; cursor: pointer;">
-      <h4 style="margin-top: 0; color: #2980b9; display: flex; align-items: center;">
-        <span style="font-size: 20px; margin-right: 8px;">📑</span> 
-        One-Click Select (Click area to highlight all, then Copy)
-      </h4>
+    <div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border: 1px solid #e1e4e8; border-radius: 8px;">
+      <h4 style="margin-top: 0; color: #2c3e50; font-size: 14px; border-bottom: 1px solid #e1e4e8; padding-bottom: 8px;">📑 학습 텍스트 (수동 복사용)</h4>
       <div style="
         -webkit-user-select: all; 
         -moz-user-select: all; 
@@ -88,18 +90,14 @@ ${tipsHtml ? `[Tips]\n${(tips || []).join("\n")}` : ""}
         user-select: all; 
         white-space: pre-wrap; 
         font-family: 'Courier New', Courier, monospace; 
-        font-size: 14px; 
+        font-size: 13px; 
         color: #444; 
         background: white; 
         padding: 15px; 
-        border: 1px solid #eee;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
       ">${copyText}</div>
-      <p style="font-size: 11px; color: #7f8c8d; margin-top: 10px; text-align: right;">* Click once to select all, then press Ctrl+C</p>
-    </div>
-
-    <div style="text-align: center; margin: 30px 0;">
-      <p style="font-size: 12px; color: #999; margin-bottom: 10px;">Cannot copy directly? Try the automated button:</p>
-      <a href="${copyUrl}" style="background-color: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; font-size: 14px;">🚀 Open & Auto-Copy in Browser</a>
     </div>
 
     <hr style="margin-top: 40px; border: 0; border-top: 1px solid #eee;" />
